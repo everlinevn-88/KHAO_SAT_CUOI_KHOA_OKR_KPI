@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phiếu đánh giá cuối khóa OKR–KPI | Everline Việt Nam</title>
+<meta name="description" content="Phiếu đánh giá cuối khóa đào tạo OKR–KPI của Everline Việt Nam">
+<style>
+  :root {
+    --red: #E5322D;
+    --blue: #2B7BD5;
+    --yellow: #F5B731;
+    --green: #2DB54A;
+    --bg: #F7F6F3;
+    --card-bg: #FFFFFF;
+    --card-border: #E8E6E1;
+    --text-primary: #1A1A1A;
+    --text-secondary: #4A4A4A;
+    --text-muted: #8C8C8C;
+    --input-bg: #F2F1ED;
+    --gradient: linear-gradient(135deg, #E5322D, #F5B731, #2DB54A, #2B7BD5);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    padding: 20px 16px;
+    color: var(--text-primary);
+  }
+  .container { max-width: 580px; margin: 0 auto; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes confetti { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(200px) rotate(720deg); opacity: 0; } }
+  @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .q-card { transition: box-shadow 0.2s ease; }
+  textarea:focus, input:focus { outline: none; box-shadow: 0 0 0 3px rgba(43, 123, 213, 0.18); }
+
+  /* Top bar */
+  .top-bar { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .logo-wrap {
+    width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0; padding: 2px;
+    background: var(--gradient); background-size: 300% 300%;
+    animation: gradientMove 4s ease infinite;
+    box-shadow: 0 2px 12px rgba(229,50,45,0.12), 0 2px 12px rgba(43,123,213,0.08);
+  }
+  .logo-inner {
+    width: 100%; height: 100%; border-radius: 50%; background: #FFF;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+    font-size: 22px; font-weight: 900; color: var(--red);
+    letter-spacing: -1px;
+  }
+  .title-block h1 { font-size: 18px; font-weight: 800; margin: 0 0 4px; letter-spacing: 0.3px; }
+  .badge {
+    display: inline-block; padding: 3px 12px; border-radius: 100px;
+    background: var(--gradient); background-size: 200% 200%;
+    animation: gradientMove 3s ease infinite;
+  }
+  .badge span { font-size: 10.5px; font-weight: 700; color: #FFF; letter-spacing: 0.5px; }
+  .subtitle { color: var(--text-muted); font-size: 12.5px; margin: 0; text-align: center; }
+
+  /* Intro card */
+  .intro-card {
+    background: var(--card-bg); border-radius: 16px; padding: 20px 22px;
+    border: 1px solid var(--card-border); box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    position: relative; overflow: hidden; margin-bottom: 22px;
+  }
+  .intro-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--gradient); background-size: 200% 200%;
+    animation: gradientMove 3s ease infinite;
+  }
+  .intro-card p { font-size: 13.5px; line-height: 1.7; margin: 0 0 10px; color: var(--text-secondary); }
+  .intro-card p:first-of-type { color: var(--text-primary); font-size: 14px; font-weight: 500; }
+  .intro-card p strong { color: var(--red); }
+  .quote-line { margin-top: 14px; display: flex; align-items: center; gap: 8px; }
+  .quote-bar { width: 4px; height: 32px; border-radius: 4px; background: var(--gradient); background-size: 100% 400%; animation: gradientMove 3s ease infinite; }
+  .quote-text { font-size: 13px; margin: 0; font-style: italic; font-weight: 500; color: var(--text-primary); }
+
+  /* Progress */
+  .progress-wrap { margin-bottom: 18px; }
+  .progress-label { display: flex; justify-content: space-between; margin-bottom: 6px; }
+  .progress-label span:first-child { font-size: 12px; color: var(--text-muted); }
+  .progress-label .pct { font-size: 12px; font-weight: 700; }
+  .progress-bar { height: 5px; background: var(--card-border); border-radius: 100px; overflow: hidden; }
+  .progress-fill {
+    height: 100%; border-radius: 100px;
+    background: var(--gradient); background-size: 200% 200%;
+    animation: gradientMove 3s ease infinite;
+    transition: width 0.5s ease; width: 0%;
+  }
+
+  /* Section tabs */
+  .tabs { display: flex; gap: 6px; margin-bottom: 18px; }
+  .tab {
+    flex: 1; padding: 10px 4px; border-radius: 12px; cursor: pointer;
+    border: 2px solid var(--card-border); background: var(--card-bg);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    font-family: inherit; text-align: center;
+  }
+  .tab-icon { font-size: 18px; margin-bottom: 2px; }
+  .tab-title { font-size: 10.5px; color: var(--text-muted); line-height: 1.3; }
+  .tab.active .tab-title { font-weight: 700; }
+  .tab-status { font-size: 10px; margin-top: 3px; color: var(--text-muted); }
+  .tab-status.done { color: var(--green); font-weight: 600; }
+
+  /* Section header */
+  .sec-header {
+    display: flex; align-items: center; gap: 12px; padding: 14px 18px;
+    border-radius: 14px; margin-bottom: 14px;
+  }
+  .sec-header-icon { font-size: 26px; }
+  .sec-header-title { font-size: 16px; font-weight: 700; }
+  .sec-header-sub { font-size: 12px; color: var(--text-muted); }
+
+  /* Question card */
+  .q-card {
+    background: var(--card-bg); border-radius: 16px; padding: 22px 20px;
+    margin-bottom: 14px; border: 1px solid var(--card-border);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.03);
+  }
+  .q-header { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 16px; }
+  .q-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+    font-size: 13px; font-weight: 800;
+  }
+  .q-label { font-size: 14px; line-height: 1.55; margin: 0; font-weight: 500; }
+
+  /* Emoji */
+  .emoji-row { display: flex; gap: 6px; }
+  .emoji-btn {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;
+    padding: 14px 4px; border-radius: 14px; cursor: pointer;
+    border: 2px solid transparent;
+    background: var(--input-bg);
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+    font-family: inherit;
+    box-shadow: inset 0 0 0 1px var(--card-border);
+  }
+  .emoji-btn.selected { box-shadow: none; }
+  .emoji-icon { font-size: 30px; }
+  .emoji-label { font-size: 10px; white-space: pre-line; text-align: center; line-height: 1.3; color: var(--text-muted); }
+  .emoji-btn.selected .emoji-label { font-weight: 600; }
+
+  /* Rating */
+  .rating-row { display: flex; gap: 5px; }
+  .rating-btn {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px;
+    padding: 10px 4px; border-radius: 12px; cursor: pointer;
+    border: 2px solid transparent;
+    background: var(--input-bg);
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+    font-family: inherit;
+    box-shadow: inset 0 0 0 1px var(--card-border);
+  }
+  .rating-btn.selected { box-shadow: none; }
+  .rating-circle {
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card-border); color: var(--text-muted);
+    font-size: 14px; font-weight: 700;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+  .rating-btn.filled .rating-circle { color: #FFF; }
+  .rating-label { font-size: 10px; text-align: center; line-height: 1.2; color: var(--text-muted); }
+  .rating-btn.selected .rating-label { font-weight: 600; }
+
+  /* Multicheck */
+  .check-list { display: flex; flex-direction: column; gap: 7px; }
+  .check-btn {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px; border-radius: 10px; cursor: pointer;
+    border: 2px solid var(--card-border); background: var(--input-bg);
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+    text-align: left; font-family: inherit; width: 100%;
+  }
+  .check-box {
+    width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+    border: 2px solid var(--card-border); background: var(--card-bg);
+    display: flex; align-items: center; justify-content: center;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+  .check-btn.checked .check-box { border-color: transparent; }
+  .check-btn.checked .check-box::after { content: '✓'; color: #FFF; font-size: 14px; font-weight: 700; }
+  .check-text { font-size: 13px; color: var(--text-secondary); }
+  .check-btn.checked .check-text { color: var(--text-primary); font-weight: 500; }
+
+  /* Text input */
+  textarea {
+    width: 100%; padding: 12px 14px; border-radius: 10px;
+    border: 1px solid var(--card-border); font-size: 14px;
+    font-family: inherit; resize: vertical; color: var(--text-primary);
+    background: var(--input-bg);
+  }
+
+  /* Other opinion */
+  .other-toggle {
+    display: flex; align-items: center; gap: 8px; margin-top: 12px;
+    padding: 8px 14px; border-radius: 8px; cursor: pointer;
+    border: 1px dashed var(--card-border); background: transparent;
+    transition: all 0.2s; font-family: inherit;
+  }
+  .other-plus { font-size: 15px; font-weight: 600; color: var(--text-muted); transition: transform 0.2s; }
+  .other-toggle.open .other-plus { transform: rotate(45deg); }
+  .other-text { font-size: 12.5px; color: var(--text-muted); font-weight: 500; }
+  .other-textarea {
+    margin-top: 8px; padding: 10px 14px; font-size: 13px;
+    animation: slideIn 0.2s ease; display: none;
+  }
+  .other-textarea.visible { display: block; }
+
+  /* Navigation */
+  .nav-row { display: flex; gap: 12px; margin-top: 12px; margin-bottom: 40px; }
+  .btn-back {
+    flex: 1; padding: 14px; border-radius: 12px; cursor: pointer;
+    border: 1px solid var(--card-border); background: var(--card-bg);
+    color: var(--text-secondary); font-size: 14px; font-weight: 600;
+    font-family: inherit; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .btn-next, .btn-submit {
+    flex: 1; padding: 14px; border-radius: 12px; cursor: pointer;
+    border: none; font-size: 14px; font-weight: 700; font-family: inherit;
+    color: #FFF;
+    background: var(--gradient); background-size: 200% 200%;
+    animation: gradientMove 3s ease infinite;
+  }
+  .btn-submit { padding: 16px; font-size: 16px; font-weight: 800; letter-spacing: 0.5px; }
+  .btn-submit:disabled, .btn-next:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn-submit .spinner {
+    display: none; width: 16px; height: 16px; border: 2px solid #FFF;
+    border-top-color: transparent; border-radius: 50%;
+    animation: spin 0.7s linear infinite; margin-right: 8px;
+    vertical-align: middle;
+  }
+  .btn-submit.loading .spinner { display: inline-block; }
+
+  /* Footer */
+  .footer { text-align: center; padding-bottom: 30px; }
+  .footer-pill {
+    display: inline-block; padding: 3px; border-radius: 100px;
+    background: var(--gradient); background-size: 200% 200%;
+    animation: gradientMove 3s ease infinite;
+  }
+  .footer-inner { background: var(--bg); border-radius: 100px; padding: 6px 20px; }
+  .footer-inner span { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; }
+
+  /* Error message */
+  .error-msg {
+    background: #FEE; border: 1px solid var(--red); border-radius: 10px;
+    padding: 12px 16px; margin-bottom: 14px; color: var(--red);
+    font-size: 13px; display: none;
+  }
+  .error-msg.visible { display: block; }
+
+  /* Thank you screen */
+  .thanks-wrap {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 20px; display: none;
+  }
+  .thanks-wrap.visible { display: flex; }
+  .thanks-inner { text-align: center; max-width: 480px; width: 100%; animation: fadeUp 0.6s ease; }
+  .confetti-row { position: relative; height: 80px; margin-bottom: 20px; }
+  .confetti-row span { position: absolute; font-size: 24px; top: 0; }
+  .thanks-card {
+    background: var(--card-bg); border-radius: 24px; padding: 48px 32px;
+    border: 1px solid var(--card-border); box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  }
+  .thanks-check {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: var(--gradient); background-size: 300% 300%;
+    animation: gradientMove 4s ease infinite;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px; font-size: 40px; color: #FFF; font-weight: 800;
+  }
+  .thanks-card h2 { font-size: 26px; margin-bottom: 12px; font-weight: 700; }
+  .thanks-card p { font-size: 15px; line-height: 1.7; margin: 0 0 8px; color: var(--text-secondary); }
+</style>
+</head>
+<body>
+
+<!-- ===== MAIN FORM ===== -->
+<div id="main-form" class="container">
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="logo-wrap">
+      <div class="logo-inner">EV</div>
+    </div>
+    <div class="title-block" style="flex: 1;">
+      <h1>PHIẾU ĐÁNH GIÁ CUỐI KHÓA</h1>
+      <div class="badge"><span>OKR–KPI • KHỐI CNTT NGÂN HÀNG</span></div>
+    </div>
+  </div>
+  <p class="subtitle" style="margin-bottom: 20px;">
+    Khóa đào tạo "Tái thiết hệ thống OKR–KPI" • Giảng viên: Bà Vũ Thị Lê Lan
+  </p>
+
+  <!-- Intro -->
+  <div class="intro-card">
+    <p>Kính gửi Anh/Chị Học viên,</p>
+    <p>Everline Việt Nam xin trân trọng cảm ơn Anh/Chị đã dành thời gian và tâm huyết tham gia trọn vẹn khóa đào tạo. Ý kiến đóng góp của Anh/Chị chính là nguồn tư liệu quý báu giúp chúng tôi không ngừng hoàn thiện chất lượng đào tạo trong tương lai.</p>
+    <p>Kính đề nghị Anh/Chị dành khoảng <strong>3–5 phút</strong> hoàn thành phiếu đánh giá dưới đây. Mọi phản hồi đều được bảo mật và sẽ được Ban Tổ chức xem xét nghiêm túc.</p>
+    <div class="quote-line">
+      <div class="quote-bar"></div>
+      <p class="quote-text">"Sự thẳng thắn của Anh/Chị là động lực để Everline hoàn thiện mỗi ngày."</p>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Hoàn thành</span>
+      <span class="pct" id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs" id="tabs"></div>
+
+  <!-- Section header -->
+  <div class="sec-header" id="sec-header"></div>
+
+  <!-- Error message -->
+  <div class="error-msg" id="error-msg"></div>
+
+  <!-- Questions -->
+  <div id="questions"></div>
+
+  <!-- Navigation -->
+  <div class="nav-row" id="nav-row"></div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-pill">
+      <div class="footer-inner"><span>EVERLINE VIỆT NAM • Trust to Move Forward</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== THANK YOU ===== -->
+<div id="thanks" class="thanks-wrap">
+  <div class="thanks-inner">
+    <div class="confetti-row" id="confetti"></div>
+    <div class="thanks-card">
+      <div class="thanks-check">✓</div>
+      <h2>Cảm ơn Anh/Chị rất nhiều!</h2>
+      <p>Những ý kiến đóng góp của Anh/Chị là tài sản quý giá giúp Everline Việt Nam hoàn thiện chất lượng đào tạo.</p>
+      <p>Chúng tôi trân trọng sự đồng hành của Anh/Chị trong suốt khóa học và hy vọng được tiếp tục hợp tác trong tương lai.</p>
+      <div class="footer-pill" style="margin-top: 24px;">
+        <div class="footer-inner" style="background: var(--card-bg);"><span>EVERLINE VIỆT NAM • Trust to Move Forward</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ========== CẤU HÌNH GOOGLE APPS SCRIPT ==========
+   Sau khi triển khai Google Apps Script, dán URL Web App vào đây.
+   Hướng dẫn chi tiết trong file README.md.
+*/
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzvlcv1JsAZKC5_toNcjhkUtUGtfCZIRXrSChGJno5TmDb_JQ-ze241drjHbWYCluUp/exec';
+
+/* ========== DỮ LIỆU CÂU HỎI ========== */
+const SECTIONS = [
+  {
+    id: "general", title: "Đánh giá tổng quan", icon: "📊", color: "#2B7BD5",
+    questions: [
+      { id: "q1", type: "emoji", label: "Mức độ hài lòng chung của Anh/Chị về khóa đào tạo?",
+        options: [
+          { emoji: "😞", label: "Rất không\nhài lòng" },
+          { emoji: "😕", label: "Không\nhài lòng" },
+          { emoji: "😐", label: "Bình\nthường" },
+          { emoji: "😊", label: "Hài\nlòng" },
+          { emoji: "🤩", label: "Rất\nhài lòng" }
+        ]
+      },
+      { id: "q2", type: "rating", label: "Nội dung đào tạo có phù hợp và thiết thực với công việc thực tế?",
+        options: ["Hoàn toàn không", "Ít phù hợp", "Tương đối", "Phù hợp", "Rất phù hợp"] },
+      { id: "q2b", type: "rating", label: "Sau khóa học, Anh/Chị có tự tin áp dụng OKR–KPI vào công việc thực tế không?",
+        options: ["Hoàn toàn không", "Ít tự tin", "Tương đối", "Tự tin", "Rất tự tin"] }
+    ]
+  },
+  {
+    id: "instructor", title: "Đánh giá Giảng viên", icon: "👩‍🏫", color: "#E5322D",
+    questions: [
+      { id: "q3a", type: "rating", label: "Trình bày nội dung rõ ràng, dễ hiểu?", options: ["Rất kém", "Kém", "Trung bình", "Tốt", "Xuất sắc"] },
+      { id: "q3b", type: "rating", label: "Kiến thức chuyên sâu, ví dụ thực tế sát ngành ngân hàng/CNTT?", options: ["Rất kém", "Kém", "Trung bình", "Tốt", "Xuất sắc"] },
+      { id: "q3c", type: "rating", label: "Tương tác tốt, tạo không khí lớp học sôi nổi?", options: ["Rất kém", "Kém", "Trung bình", "Tốt", "Xuất sắc"] },
+      { id: "q3d", type: "rating", label: "Giải đáp thắc mắc thỏa đáng, quản lý thời gian hợp lý?", options: ["Rất kém", "Kém", "Trung bình", "Tốt", "Xuất sắc"] },
+      { id: "q3e", type: "rating", label: "Phần chữa bài trực tiếp (Live Rebuild) có hữu ích cho Anh/Chị?", options: ["Rất kém", "Kém", "Trung bình", "Tốt", "Xuất sắc"] }
+    ]
+  },
+  {
+    id: "logistics", title: "Tổ chức & Hậu cần", icon: "🏢", color: "#F5B731",
+    questions: [
+      { id: "q4a", type: "rating", label: "Địa điểm tổ chức (vị trí, thuận tiện di chuyển)?", options: ["Rất kém", "Kém", "Trung bình", "Tốt", "Xuất sắc"] },
+      { id: "q4b", type: "rating", label: "Cơ sở vật chất phòng học (bàn ghế, máy chiếu, âm thanh, điều hòa)?", options: ["Rất kém", "Kém", "Trung bình", "Tốt", "Xuất sắc"] },
+      { id: "q4d", type: "rating", label: "Tea break (chất lượng đồ ăn/uống, thời gian nghỉ)?", options: ["Rất kém", "Kém", "Trung bình", "Tốt", "Xuất sắc"] },
+      { id: "q4e", type: "rating", label: "Công tác truyền thông, hỗ trợ học viên (email, Zalo, tài liệu) có kịp thời và đầy đủ?", options: ["Rất kém", "Kém", "Trung bình", "Tốt", "Xuất sắc"] }
+    ]
+  },
+  {
+    id: "content", title: "Nội dung & Góp ý", icon: "💡", color: "#2DB54A",
+    questions: [
+      { id: "q5", type: "multicheck", label: "Anh/Chị ấn tượng nhất với nội dung nào trong khóa học? (Chọn nhiều)",
+        options: [
+          "Phân biệt bản chất KPI vs OKR",
+          "Mô hình vận hành OKR–KPI song song",
+          "Nguyên tắc thiết kế OKR & lỗi cần tránh",
+          "Phần trình bày nhóm & chữa bài trực tiếp",
+          "Chuẩn hóa framework OKR cho toàn Khối"
+        ]
+      },
+      { id: "q6", type: "text", label: "Anh/Chị có đề xuất chủ đề đào tạo nào khác mà Everline có thể hỗ trợ trong tương lai?",
+        placeholder: "Chia sẻ mong muốn của Anh/Chị..." },
+      { id: "q7", type: "text", label: "Góp ý khác để Everline Việt Nam cải thiện chất lượng đào tạo (nếu có):",
+        placeholder: "Mọi góp ý đều rất có giá trị..." }
+    ]
+  }
+];
+
+const ALL_Q = SECTIONS.flatMap(s => s.questions);
+
+/* ========== STATE ========== */
+const state = {
+  answers: {},
+  otherTexts: {},
+  showOther: {},
+  secIdx: 0
+};
+
+/* ========== HELPERS ========== */
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function calcProgress() {
+  let f = 0;
+  ALL_Q.forEach(q => {
+    const v = state.answers[q.id];
+    if ((q.type === "emoji" || q.type === "rating") && v !== undefined) f++;
+    if (q.type === "multicheck" && (v || []).length > 0) f++;
+    if (q.type === "text" && (v || "").trim()) f++;
+  });
+  return Math.round((f / ALL_Q.length) * 100);
+}
+
+function calcSecProgress(i) {
+  const qs = SECTIONS[i].questions;
+  let f = 0;
+  qs.forEach(q => {
+    const v = state.answers[q.id];
+    if ((q.type === "emoji" || q.type === "rating") && v !== undefined) f++;
+    if (q.type === "multicheck" && (v || []).length > 0) f++;
+    if (q.type === "text" && (v || "").trim()) f++;
+  });
+  return { f, t: qs.length };
+}
+
+/* ========== RENDER (toàn bộ - chỉ gọi khi đổi section) ========== */
+function renderAll() {
+  renderTabs();
+  renderSecHeader();
+  renderQuestions();
+  renderNav();
+  renderProgress();
+}
+
+/* Cập nhật nhẹ sau khi user click - không re-render DOM */
+function updateLightweight() {
+  renderProgress();
+  updateTabsStatus();
+}
+
+function renderProgress() {
+  const pct = calcProgress();
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-pct').style.color = SECTIONS[state.secIdx].color;
+  document.getElementById('progress-pct').textContent = pct + '%';
+}
+
+/* Chỉ update trạng thái done/count trên tab, không tạo lại DOM */
+function updateTabsStatus() {
+  document.querySelectorAll('#tabs .tab').forEach((tab, i) => {
+    const p = calcSecProgress(i);
+    const done = p.f === p.t && p.t > 0;
+    const statusEl = tab.querySelector('.tab-status');
+    if (statusEl) {
+      statusEl.textContent = done ? '✓ Xong' : p.f + '/' + p.t;
+      statusEl.classList.toggle('done', done);
+    }
+  });
+}
+
+function renderTabs() {
+  const c = document.getElementById('tabs');
+  c.innerHTML = SECTIONS.map((s, i) => {
+    const p = calcSecProgress(i);
+    const active = state.secIdx === i;
+    const done = p.f === p.t && p.t > 0;
+    const style = active
+      ? `border-color: ${s.color}; background: ${s.color}0C;`
+      : '';
+    const titleColor = active ? `color: ${s.color};` : '';
+    return `
+      <button class="tab ${active ? 'active' : ''}" data-idx="${i}" style="${style}">
+        <div class="tab-icon">${s.icon}</div>
+        <div class="tab-title" style="${titleColor}">${s.title}</div>
+        <div class="tab-status ${done ? 'done' : ''}">${done ? '✓ Xong' : p.f + '/' + p.t}</div>
+      </button>
+    `;
+  }).join('');
+  c.querySelectorAll('.tab').forEach(b => b.onclick = () => {
+    state.secIdx = +b.dataset.idx;
+    renderAll();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+function renderSecHeader() {
+  const s = SECTIONS[state.secIdx];
+  const h = document.getElementById('sec-header');
+  h.style.background = s.color + '08';
+  h.style.border = '1px solid ' + s.color + '20';
+  h.innerHTML = `
+    <span class="sec-header-icon">${s.icon}</span>
+    <div>
+      <div class="sec-header-title" style="color: ${s.color}">Phần ${state.secIdx + 1}: ${s.title}</div>
+      <div class="sec-header-sub">${s.questions.length} câu hỏi</div>
+    </div>
+  `;
+}
+
+function renderQuestions() {
+  const sec = SECTIONS[state.secIdx];
+  const globalOffset = SECTIONS.slice(0, state.secIdx).reduce((s, x) => s + x.questions.length, 0);
+  const c = document.getElementById('questions');
+  c.innerHTML = sec.questions.map((q, qi) => {
+    const gIdx = globalOffset + qi + 1;
+    return `
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-num" style="background: ${sec.color}12; color: ${sec.color}">${gIdx}</span>
+          <p class="q-label">${escapeHtml(q.label)}</p>
+        </div>
+        ${renderQuestionBody(q, sec)}
+        ${q.type !== 'text' ? renderOtherSection(q, sec) : ''}
+      </div>
+    `;
+  }).join('');
+  attachQuestionHandlers(sec);
+}
+
+function renderQuestionBody(q, sec) {
+  if (q.type === 'emoji') {
+    return `<div class="emoji-row">${q.options.map((o, oi) => {
+      const sel = state.answers[q.id] === oi;
+      const style = sel ? `border-color: ${sec.color}; background: ${sec.color}0C;` : '';
+      const labelStyle = sel ? `color: ${sec.color};` : '';
+      return `
+        <button class="emoji-btn ${sel ? 'selected' : ''}" data-qid="${q.id}" data-val="${oi}" style="${style}">
+          <span class="emoji-icon">${o.emoji}</span>
+          <span class="emoji-label" style="${labelStyle}">${escapeHtml(o.label)}</span>
+        </button>`;
+    }).join('')}</div>`;
+  }
+  if (q.type === 'rating') {
+    const ans = state.answers[q.id];
+    return `<div class="rating-row">${q.options.map((o, oi) => {
+      const sel = ans === oi;
+      const btnStyle = sel ? `border-color: ${sec.color}; background: ${sec.color}0A;` : '';
+      const circleStyle = sel ? `background: ${sec.color};` : '';
+      const labelStyle = sel ? `color: ${sec.color};` : '';
+      return `
+        <button class="rating-btn ${sel ? 'selected filled' : ''}" data-qid="${q.id}" data-val="${oi}" style="${btnStyle}">
+          <div class="rating-circle" style="${circleStyle}">${oi + 1}</div>
+          <span class="rating-label" style="${labelStyle}">${escapeHtml(o)}</span>
+        </button>`;
+    }).join('')}</div>`;
+  }
+  if (q.type === 'multicheck') {
+    const cur = state.answers[q.id] || [];
+    return `<div class="check-list">${q.options.map((o, oi) => {
+      const ck = cur.includes(o);
+      const style = ck ? `border-color: ${sec.color}; background: ${sec.color}0A;` : '';
+      const boxStyle = ck ? `background: ${sec.color};` : '';
+      return `
+        <button class="check-btn ${ck ? 'checked' : ''}" data-qid="${q.id}" data-opt="${escapeHtml(o)}" style="${style}">
+          <span class="check-box" style="${boxStyle}"></span>
+          <span class="check-text">${escapeHtml(o)}</span>
+        </button>`;
+    }).join('')}</div>`;
+  }
+  if (q.type === 'text') {
+    const v = state.answers[q.id] || '';
+    return `<textarea data-qid="${q.id}" data-type="text" rows="3" placeholder="${escapeHtml(q.placeholder || '')}">${escapeHtml(v)}</textarea>`;
+  }
+  return '';
+}
+
+function renderOtherSection(q, sec) {
+  const open = state.showOther[q.id];
+  const val = state.otherTexts[q.id] || '';
+  const toggleStyle = open ? `border-color: ${sec.color}; background: ${sec.color}06;` : '';
+  const plusStyle = open ? `color: ${sec.color};` : '';
+  return `
+    <div>
+      <button class="other-toggle ${open ? 'open' : ''}" data-qid="${q.id}" data-action="toggle-other" style="${toggleStyle}">
+        <span class="other-plus" style="${plusStyle}">+</span>
+        <span class="other-text" style="${plusStyle}">Ý kiến khác</span>
+      </button>
+      <textarea class="other-textarea ${open ? 'visible' : ''}" data-qid="${q.id}" data-type="other" rows="2" placeholder="Nhập ý kiến khác của Anh/Chị...">${escapeHtml(val)}</textarea>
+    </div>
+  `;
+}
+
+/* === XỬ LÝ CLICK: chỉ update class/style các nút bị ảnh hưởng, không re-render === */
+function attachQuestionHandlers(sec) {
+  // EMOJI & RATING (single-select): toggle 1 nút active trong nhóm
+  document.querySelectorAll('.emoji-btn, .rating-btn').forEach(b => {
+    b.onclick = () => {
+      const qid = b.dataset.qid;
+      const val = +b.dataset.val;
+      state.answers[qid] = val;
+      // Update tất cả nút cùng qid trong câu hỏi này
+      updateSingleSelectGroup(qid, val, sec);
+      updateLightweight();
+    };
+  });
+
+  // MULTI-CHECK
+  document.querySelectorAll('.check-btn').forEach(b => {
+    b.onclick = () => {
+      const id = b.dataset.qid;
+      const opt = b.dataset.opt;
+      const cur = state.answers[id] || [];
+      state.answers[id] = cur.includes(opt) ? cur.filter(x => x !== opt) : [...cur, opt];
+      updateCheckButton(b, sec);
+      updateLightweight();
+    };
+  });
+
+  // TEXT input
+  document.querySelectorAll('textarea[data-type="text"]').forEach(t => {
+    t.oninput = () => {
+      state.answers[t.dataset.qid] = t.value;
+      updateLightweight();
+    };
+  });
+
+  // OTHER textarea
+  document.querySelectorAll('textarea[data-type="other"]').forEach(t => {
+    t.oninput = () => { state.otherTexts[t.dataset.qid] = t.value; };
+  });
+
+  // TOGGLE other - chỉ show/hide textarea, không re-render
+  document.querySelectorAll('[data-action="toggle-other"]').forEach(b => {
+    b.onclick = () => {
+      const id = b.dataset.qid;
+      state.showOther[id] = !state.showOther[id];
+      updateOtherToggle(b, sec);
+    };
+  });
+}
+
+/* Update emoji/rating group sau khi chọn - chỉ thay class và inline style */
+function updateSingleSelectGroup(qid, val, sec) {
+  document.querySelectorAll(`[data-qid="${qid}"]`).forEach(btn => {
+    if (!btn.classList.contains('emoji-btn') && !btn.classList.contains('rating-btn')) return;
+    const oi = +btn.dataset.val;
+    const isSelected = oi === val;
+    const isRating = btn.classList.contains('rating-btn');
+
+    btn.classList.toggle('selected', isSelected);
+    if (isRating) btn.classList.toggle('filled', isSelected);
+
+    if (isSelected) {
+      btn.style.borderColor = sec.color;
+      btn.style.background = isRating ? sec.color + '0A' : sec.color + '0C';
+      const label = btn.querySelector(isRating ? '.rating-label' : '.emoji-label');
+      if (label) label.style.color = sec.color;
+      if (isRating) {
+        const circle = btn.querySelector('.rating-circle');
+        if (circle) circle.style.background = sec.color;
+      }
+    } else {
+      btn.style.borderColor = '';
+      btn.style.background = '';
+      const label = btn.querySelector(isRating ? '.rating-label' : '.emoji-label');
+      if (label) label.style.color = '';
+      if (isRating) {
+        const circle = btn.querySelector('.rating-circle');
+        if (circle) circle.style.background = '';
+      }
+    }
+  });
+}
+
+/* Update check button sau khi toggle */
+function updateCheckButton(btn, sec) {
+  const id = btn.dataset.qid;
+  const opt = btn.dataset.opt;
+  const checked = (state.answers[id] || []).includes(opt);
+  btn.classList.toggle('checked', checked);
+  if (checked) {
+    btn.style.borderColor = sec.color;
+    btn.style.background = sec.color + '0A';
+    const box = btn.querySelector('.check-box');
+    if (box) box.style.background = sec.color;
+  } else {
+    btn.style.borderColor = '';
+    btn.style.background = '';
+    const box = btn.querySelector('.check-box');
+    if (box) box.style.background = '';
+  }
+}
+
+/* Update "Ý kiến khác" toggle - show/hide textarea kèm theo */
+function updateOtherToggle(btn, sec) {
+  const id = btn.dataset.qid;
+  const open = state.showOther[id];
+  btn.classList.toggle('open', open);
+  if (open) {
+    btn.style.borderColor = sec.color;
+    btn.style.background = sec.color + '06';
+    btn.querySelectorAll('.other-plus, .other-text').forEach(el => el.style.color = sec.color);
+  } else {
+    btn.style.borderColor = '';
+    btn.style.background = '';
+    btn.querySelectorAll('.other-plus, .other-text').forEach(el => el.style.color = '');
+  }
+  // Show/hide textarea kế bên
+  const textarea = btn.parentElement.querySelector('.other-textarea');
+  if (textarea) textarea.classList.toggle('visible', open);
+}
+
+function renderNav() {
+  const nav = document.getElementById('nav-row');
+  const isLast = state.secIdx === SECTIONS.length - 1;
+  let html = '';
+  if (state.secIdx > 0) {
+    html += `<button class="btn-back" id="btn-back">← Quay lại</button>`;
+  }
+  if (!isLast) {
+    html += `<button class="btn-next" id="btn-next">Tiếp theo →</button>`;
+  } else {
+    html += `<button class="btn-submit" id="btn-submit"><span class="spinner"></span>🚀 Gửi đánh giá</button>`;
+  }
+  nav.innerHTML = html;
+  const back = document.getElementById('btn-back');
+  if (back) back.onclick = () => { state.secIdx--; renderAll(); window.scrollTo({top: 0, behavior: 'smooth'}); };
+  const next = document.getElementById('btn-next');
+  if (next) next.onclick = () => { state.secIdx++; renderAll(); window.scrollTo({top: 0, behavior: 'smooth'}); };
+  const sub = document.getElementById('btn-submit');
+  if (sub) sub.onclick = submitForm;
+}
+
+/* ========== SUBMIT TO GOOGLE SHEETS ========== */
+async function submitForm() {
+  const btn = document.getElementById('btn-submit');
+  const errEl = document.getElementById('error-msg');
+  errEl.classList.remove('visible');
+
+  // Tạo payload phẳng để dễ ghi vào Google Sheets
+  const payload = {
+    timestamp: new Date().toISOString(),
+    timestamp_local: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })
+  };
+
+  ALL_Q.forEach(q => {
+    const v = state.answers[q.id];
+    if (q.type === 'emoji' || q.type === 'rating') {
+      payload[q.id] = (v !== undefined) ? (v + 1) : ''; // Lưu giá trị 1–5
+      payload[q.id + '_label'] = (v !== undefined)
+        ? (q.type === 'emoji' ? q.options[v].label.replace('\n', ' ') : q.options[v])
+        : '';
+    } else if (q.type === 'multicheck') {
+      payload[q.id] = (v || []).join(' | ');
+    } else if (q.type === 'text') {
+      payload[q.id] = v || '';
+    }
+    // Ý kiến khác cho câu không phải text
+    if (q.type !== 'text') {
+      payload[q.id + '_other'] = state.otherTexts[q.id] || '';
+    }
+  });
+
+  // Kiểm tra URL Apps Script
+  if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+    errEl.textContent = '⚠️ Chưa cấu hình URL Google Apps Script. Vui lòng liên hệ Ban tổ chức.';
+    errEl.classList.add('visible');
+    console.log('Payload (chưa gửi):', payload);
+    return;
+  }
+
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  try {
+    // Gửi POST với mode: 'no-cors' để tránh lỗi CORS của Google Apps Script
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    showThanks();
+  } catch (e) {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    errEl.textContent = '⚠️ Có lỗi khi gửi đánh giá. Vui lòng thử lại hoặc kiểm tra kết nối mạng.';
+    errEl.classList.add('visible');
+    console.error(e);
+  }
+}
+
+function showThanks() {
+  document.getElementById('main-form').style.display = 'none';
+  const t = document.getElementById('thanks');
+  t.classList.add('visible');
+  // Confetti
+  const c = document.getElementById('confetti');
+  const emojis = ['🎉','⭐','🎊','✨','🌟','🎉','⭐','🎊'];
+  c.innerHTML = emojis.map((e, i) =>
+    `<span style="left: ${10 + i * 12}%; animation: confetti ${1.5 + i * 0.2}s ease ${i * 0.1}s infinite;">${e}</span>`
+  ).join('');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+/* ========== INIT ========== */
+renderAll();
+</script>
+
+</body>
+</html>
